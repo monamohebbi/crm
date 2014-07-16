@@ -1,0 +1,30 @@
+
+<h1>Issues</h1>
+<%= link_to "New issue", new_issue_path %>
+
+<table border="1px">
+  <thead>
+    <tr>
+      <th>Issue id</th>
+      <th>Customer Name</th>
+      <th>Issue title</th>
+      <th>Received by</th>
+      <th>Assigned to</th>
+      <th>Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @issues.each do |issue| %>  
+      <tr>
+        <td><%=issue.id%></td>
+        <td><%=issue.customer_name%></td>
+        <td><%=issue.issue_title%></td>
+        <td><%=issue.received_by%></td>
+        <td><%=issue.assigned_to%></td>
+        <td><%=issue.assigned_date%></td>
+        <td><%= link_to "Edit", edit_issue_path(issue.id) %> <%= link_to "Show", issue_path(issue.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

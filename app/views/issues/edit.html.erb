@@ -1,0 +1,9 @@
+<h1>Edit Issue!</h1>
+<%= form_for @issue do |f| %>
+  <p>Enter Customer Name: <%= f.text_field :customer_name %></p>
+  <p>Enter Issue Title: <%= f.text_field :issue_title %></p>
+  <p>Who received the complaint?: <%= f.text_field :received_by %></p>
+  <p>Who is the complaint assigned to?: <%= f.text_field :assigned_to %></p>
+  
+  <%= f.submit %>
+<% end %>
