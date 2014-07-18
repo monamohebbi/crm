@@ -1,12 +1,7 @@
 class ActionsController < ApplicationController
   def create
-#     raise params.inspect
-#     issue = Issue.find(params["id"])
-#     issue.actions.create(params["action"].permit(:name, :date, :text))
-#     redirect_to issue_path(issue.id)
-  end
-  
-  def new
-    raise 'BOOM!'
+    issue = Issue.find(params["issue_id"])
+    issue.actions.create(params["new_action"].permit(:name, :date, :text))
+    redirect_to issue_path(issue.id)
   end
 end

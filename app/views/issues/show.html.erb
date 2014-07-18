@@ -1,4 +1,4 @@
-
+<p style="font-size: 50px">________</p><p style="font-size: 50px">___________________________</p><p style="font-size: 50px">'</p>
 <table border="1px">
   <thead>
     <tr>
@@ -23,8 +23,8 @@
 </table>
 
 <h1>New actions</h1>
-<%= form_for @action, :url => issue_action_index_path(:issue_id => @issue.id) do |f| %>
-  <p>What action do you want to perform?: <%= f.text_field :name %></p>
-  <p>Notes: <%= f.text_field :text %></p>
+<%= form_for @action, :url => issue_actions_path(:issue_id => @issue.id) do |f| %>
+<p>What action do you want to perform?: <%= text_field_tag "new_action[name]" %></p>
+<p>Notes: <%= text_field_tag "new_action[text]" %></p>
   <%= f.submit %>
 <% end %>
