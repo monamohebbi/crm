@@ -20,6 +20,7 @@ class IssuesController < ApplicationController
   def show
     @issue = Issue.find(params["id"])
     @action = @issue.actions.build
+    @actions = @issue.actions
   end
 
 end

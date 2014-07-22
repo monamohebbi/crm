@@ -2,6 +2,7 @@
 <table border="1px">
   <thead>
     <tr>
+      <th>Customer ID</th>
       <th>Customer Name</th>
       <th>Issue title</th>
       <th>Received by</th>
@@ -12,6 +13,7 @@
   </thead>
   <tbody>
     <tr>
+      <td><%=@issue.customer_id%></td>
       <td><%=@issue.customer_name%></td>
       <td><%=@issue.issue_title%></td>
       <td><%=@issue.received_by%></td>
@@ -21,8 +23,23 @@
     </tr>
   </tbody>
 </table>
+  
+<table>
+  <thead>
+    <tr>
+      <th>Action title</th>
+      <th>Performed by</th>
+      <th>Details</th>
+    </tr>
+  </thead> 
+  <tbody>
+    <td><%=@actions.name%></td>
+    <!--<td><%=@actions.person%></td>-->
+    <td><%=@actions.text%></td>
+  </tbody>
+</table>
 
-<h1>New actions</h1>
+<h3>New actions</h3>
 <%= form_for @action, :url => issue_actions_path(:issue_id => @issue.id) do |f| %>
 <p>What action do you want to perform?: <%= text_field_tag "new_action[name]" %></p>
 <p>Notes: <%= text_field_tag "new_action[text]" %></p>
