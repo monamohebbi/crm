@@ -13,6 +13,7 @@
       <th>Received by</th>
       <th>Assigned to</th>
       <th>Date</th>
+      <th>State</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -25,7 +26,21 @@
         <td><%=issue.received_by%></td>
         <td><%=issue.assigned_to%></td>
         <td><%=issue.assigned_date%></td>
-        <td><%= link_to "Edit", edit_issue_path(issue.id) %> <%= link_to "Show", issue_path(issue.id) %></td>
+        <td><%=issue.aasm_state%></td>
+        <td>
+          <%= link_to "Edit", edit_issue_path(issue.id) %>,  
+          <%= link_to "Show", issue_path(issue.id) %>, 
+          <%= form_for issue do |f| %>
+            <% if issue.open? %>
+              <%= f.hidden_field :aasm_state, :value => "closed"  %>
+              <%= f.submit "Close Issue" %>
+            <% else %>
+              <%= f.hidden_field :aasm_state, :value => "open"  %>
+              <%= f.submit "Open Issue" %>
+            <% end %> 
+          <% end %>
+        </td> 
+
       </tr>
     <% end %>
   </tbody>

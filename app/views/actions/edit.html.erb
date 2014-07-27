@@ -1,0 +1,20 @@
+<h3>Edit actions</h3>
+<%= form_for @action, :url => issue_action_path(@action.issue.id, @action.id), :class => "form-horizontal" do |f| %>
+  <p> Action title?: <%= text_field_tag "new_action[action_title]", @action.action_title %>
+  Who performed this action?: <%= text_field_tag "new_action[name]", @action.name %>
+  Date (yyyy-mm-dd) Time (0-23:0-60:0-60): <%= text_field_tag "new_action[date]", @action.date %></p>
+  <p>Details: <%= text_area_tag "new_action[text]", @action.text %></p>
+  <%= f.submit %>
+<% end %>
+
+<!--
+<%= form_for @action, :url => edit_issue_action_path(:id => @action.issue.id), :class => "form-horizontal" do |f| %>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Action title</label>
+    <div class="col-sm-10">
+      <%= text_field_tag "new_action[action_title]", @action.action_title, :class => "form-control" %>
+    </div>
+  </div>
+-->
+
+<% end %>

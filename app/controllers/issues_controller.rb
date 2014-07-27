@@ -16,7 +16,7 @@ class IssuesController < ApplicationController
   end
   def update
      @issue=Issue.find(params["id"])
-     @issue.update_attributes(params["issue"].permit(:customer_name, :issue_title, :received_by, :assigned_to, :assigned_date))
+     @issue.update_attributes(params["issue"].permit(:customer_name, :issue_title, :received_by, :assigned_to, :assigned_date, :aasm_state))
     redirect_to issues_path
   end
   def show
