@@ -12,5 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
 //= require_tree .
+
+$(document).ready(function($){
+  $(".clickable-row").click(function() {
+    window.document.location = $(this).data("target");
+  });
+});

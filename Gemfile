@@ -32,15 +32,10 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+# State Machine
 gem 'aasm'
 
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-
-gem "therubyracer"
-
-
+# Authentication
 gem 'devise'
 
 # Use ActiveModel has_secure_password
