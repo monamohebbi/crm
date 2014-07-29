@@ -7,8 +7,8 @@
     <div class="form-group">
       <label for="issue_customer_name" class="col-sm-2 control-label">Customer Name</label>
       <div class="col-sm-5">
-        <%= f.text_field :customer_name, :class => "form-control" %>
-      </div>
+        <%= f.select :customer_name, "<option>name1</option><option>name2</option><option>name3</option><option>name4</option>".html_safe %>
+      </div> 
     </div>
     <div class="form-group">
       <label for="issue_issue_title" class="col-sm-2 control-label">Issue Title</label>
@@ -19,13 +19,13 @@
     <div class="form-group">
       <label for="issue_received_by" class="col-sm-2 control-label">Received By</label>
       <div class="col-sm-5">
-        <%= f.text_field :received_by, :class => "form-control", :class => "form-control" %>
+        <%= f.select :received_by, "<option>name1</option><option>name2</option><option>name3</option><option>name4</option>".html_safe %>
       </div>
     </div>
     <div class="form-group">
       <label for="issue_assigned_to" class="col-sm-2 control-label">Assigned To</label>
       <div class="col-sm-5">
-        <%= f.text_field :assigned_to, :class => "form-control" %>
+        <%= f.select :assigned_to, options_for_select(@employees) %>
       </div>
     </div>
     <div class="form-group">
