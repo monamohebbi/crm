@@ -19,7 +19,7 @@ class IssuesController < ApplicationController
   end
   def new
     @issue = Issue.new
-    @employees = Employee.all
+    #@employees = Employee.all
   end
   def create
     Issue.create(params["issue"].permit(:customer_name, :issue_title, :received_by, :assigned_to, :assigned_date))
