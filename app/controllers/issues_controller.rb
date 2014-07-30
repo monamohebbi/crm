@@ -19,6 +19,7 @@ class IssuesController < ApplicationController
   end
   def new
     @issue = Issue.new
+    @employees = ["Mona", "Edward", "Matthew"]
     #@employees = Employee.all
   end
   def create
