@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140727222453) do
+ActiveRecord::Schema.define(version: 20140803213757) do
 
   create_table "actions", force: true do |t|
     t.string   "name"
@@ -23,12 +23,19 @@ ActiveRecord::Schema.define(version: 20140727222453) do
     t.string   "action_title"
   end
 
+  create_table "employees", force: true do |t|
+    t.string  "name"
+    t.boolean "customer_care"
+    t.boolean "software_technician"
+    t.boolean "management"
+  end
+
   create_table "issues", force: true do |t|
     t.string   "customer_name"
     t.string   "issue_title"
     t.string   "received_by"
     t.string   "assigned_to"
-    t.datetime "assigned_date", default: '2014-07-22 21:30:54'
+    t.datetime "assigned_date", default: '2014-08-03 21:45:40'
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "aasm_state",    default: "open"
@@ -47,6 +54,7 @@ ActiveRecord::Schema.define(version: 20140727222453) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "employee_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

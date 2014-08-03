@@ -1,20 +1,38 @@
-<h3>Edit actions</h3>
-<%= form_for @action, :url => issue_action_path(@action.issue.id, @action.id), :class => "form-horizontal" do |f| %>
-  <p> Action title?: <%= text_field_tag "new_action[action_title]", @action.action_title %>
-  Who performed this action?: <%= text_field_tag "new_action[name]", @action.name %>
-  Date (yyyy-mm-dd) Time (0-23:0-60:0-60): <%= text_field_tag "new_action[date]", @action.date %></p>
-  <p>Details: <%= text_area_tag "new_action[text]", @action.text %></p>
-  <%= f.submit %>
-<% end %>
-
-<!--
-<%= form_for @action, :url => edit_issue_action_path(:id => @action.issue.id), :class => "form-horizontal" do |f| %>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Action title</label>
-    <div class="col-sm-10">
-      <%= text_field_tag "new_action[action_title]", @action.action_title, :class => "form-control" %>
-    </div>
+<div class="container">
+  <div class="page-header">
+    <h1>Edit Action</h1>
   </div>
--->
-
-<% end %>
+  
+  <%= form_for @action, :url => issue_actions_path(:issue_id => @issue.id), :html => { :class => "form-horizontal" }  do |f| %>
+    <div class="form-group">
+      <label for="issue_customer_name" class="col-sm-2 control-label">Action Title</label>
+      <div class="col-sm-5">
+        <%= select_tag "new_action[action_title]", options_for_select(@action_titles, "employee_name"), :prompt => "current value: #{@action.action_title}", :class => "form-control" %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="new_action_name" class="col-sm-2 control-label">Completed By</label>
+      <div class="col-sm-5">
+        <%= select_tag "new_action[name]", options_for_select(@employees, "employee_name"), :prompt => "current value: #{@action.name}", :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="new_action_date" class="col-sm-2 control-label">Date (dd/mm/yyyy)</label>
+      <div class="col-sm-5">
+        <%= text_field_tag "new_action[date]", nil, :placeholder => "current value: #{@action.date}", :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="new_action_text" class="col-sm-2 control-label">Details</label>
+      <div class="col-sm-5">
+        <%= text_area_tag "new_action[text]", nil, :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-5">
+        <%= f.submit :class => "btn btn-success" %>
+      </div>
+    </div>
+  <% end %>
+</div>

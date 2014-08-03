@@ -6,8 +6,11 @@ class ActionsController < ApplicationController
     redirect_to issue_path(issue.id)
   end
   def edit
-    @actions = Issue.find(params["issue_id"]).actions
+    @issue = Issue.find(params["issue_id"])
+    @actions = @issue.actions
     @action = @actions.find(params["id"])
+    @action_titles = ["Investigate", "Created Bug",  "Fixed server", "Helped Customer", "Closed Issue", "Others" ]
+    @employees = ["Mona", "Edward", "Matthew", "Other"]
   end
   def update
     @actions=Issue.find(params["issue_id"]).actions

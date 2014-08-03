@@ -1,10 +1,42 @@
-
-<h1>Edit Issue!</h1>
-<%= form_for @issue do |f| %>
-  <p>Enter Customer Name: <%= f.text_field :customer_name %></p>
-  <p>Enter Issue Title: <%= f.text_field :issue_title %></p>
-  <p>Who received the complaint?: <%= f.text_field :received_by %></p>
-  <p>Who is the complaint assigned to?: <%= f.text_field :assigned_to %></p>
-  
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <div class="page-header">
+    <h1>Edit Issue</h1>
+  </div>
+  <%= form_for @issue, :html => { :class => "form-horizontal" } do |f| %>
+    <div class="form-group">
+      <label for="issue_customer_name" class="col-sm-2 control-label">Customer Name</label>
+      <div class="col-sm-5">
+        <%= f.text_field :customer_name, :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="issue_issue_title" class="col-sm-2 control-label">Issue Title</label>
+      <div class="col-sm-5">
+        <%= f.select :issue_title, options_for_select(@titles, "issue_title"),{} ,:class => "form-control", :include_blank => "current_value: #{@issue.issue_title}" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="issue_received_by" class="col-sm-2 control-label">Received by</label>
+      <div class="col-sm-5">
+        <%= f.select :issue_title, options_for_select(@employees, "receiver"),{} , :prompt => "current_value: #{@issue.received_by}", :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="issue_assigned_to" class="col-sm-2 control-label">Assigned to</label>
+      <div class="col-sm-5">
+        <%= f.select :issue_title, options_for_select(@employees, "assigned to", @issue.received_by),{} , :prompt => "current_value: #{@issue.received_by}", :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="assigned_date" class="col-sm-2 control-label">Date(dd/mm/yyyy)</label>
+      <div class="col-sm-5">
+        <%= f.text_field :assigned_date, :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-5">
+        <%= f.submit :class => "btn btn-success" %>
+      </div>
+    </div>
+  <% end %>
+</div>

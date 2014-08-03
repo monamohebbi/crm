@@ -1,12 +1,42 @@
 <div class="container">
   <div class="well" style="margin-top: 50px">
   <%= form_tag issues_path, :method => :get, :class => "form-horizontal" do %>
-      <div class="form-group">
-        <label for="state" class="col-sm-2 control-label">Issue State</label>
-        <div class="col-sm-5">
+     <div class="form-group">
+       <label for="state" class="col-sm-2 control-label">Issue State</label>
+       <div class="col-sm-5">
           <%= select_tag(:aasm_state, options_for_select(Issue.aasm.states.map{ |state| state.name }, params[:aasm_state]), {:include_blank => true, :class => 'form-control'}) %>
-        </div> 
+       </div>
+     </div>
+     <div class="form-group">    
+       <label for="received_by" class="col-sm-2 control-label">Receiver</label>
+       <div class="col-sm-5">
+          <%= select_tag(:received_by, options_for_select(@employees, params[:received_by]), {:include_blank => true, :class => 'form-control'}) %>
+       </div> 
+     </div>
+     <div class="form-group">
+       <label for="state" class="col-sm-2 control-label">Assigned To</label>
+       <div class="col-sm-5">
+          <%= select_tag(:assigned_to, options_for_select(@employees, params[:assigned_to]), {:include_blank => true, :class => 'form-control'}) %>
+       </div>
+     </div>
+    <div class="form-group">
+      <label for="state" class="col-sm-2 control-label">Issue Title</label>
+      <div class="col-sm-5">
+        <%= select_tag(:issue_title, options_for_select(@titles, params[:issue_title]), {:include_blank => true, :class => 'form-control'}) %>
       </div>
+    </div>
+    <div class="form-group">
+      <label for="assigned_date" class="col-sm-2 control-label">Opened After</label>
+      <div class="col-sm-5">
+        <%= select_tag(:opened_after, options_for_select(@titles, params[:opened_after]), {:include_blank => true, :class => 'form-control'}) %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="assigned_date" class="col-sm-2 control-label">Opened Before</label>
+      <div class="col-sm-5">
+        <%= select_tag(:opened_before, options_for_select(@titles, params[:opened_before]), {:include_blank => true, :class => 'form-control'}) %>
+      </div>
+    </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-5">
           <%= submit_tag "Filter", :class => "btn btn-success" %>
