@@ -4,7 +4,6 @@ class EmployeesController < ApplicationController
   
   def new
     @employee = Employee.new
-    @positions = ["Management", "Software Technician", "Customer Care"]
   end
   
   def create

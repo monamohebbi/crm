@@ -3,44 +3,18 @@ class IssuesController < ApplicationController
  
   def index
     @issues = Issue
-    @employees = ["Mona", "Edward", "Matthew", "Other"]
+    @received_by_employees = Employee.where(:customer_care => true).pluck(:name)
+    @assigned_to_employees = Employee.where(:software_technician => true).pluck(:name)
     @titles = ["defect/bug", "Missing functionality", "New change request", "other"]
     
-    if params[:aasm_state].present?
-      @issues = @issues.where(:aasm_state => params[:aasm_state])
-    end
-        
-    if params[:received_by].present?
-      @issues = @issues.where(:received_by => params[:received_by])
-    end
-    
-    if params[:assigned_to].present?
-      @issues = @issues.where(:assigned_to => params[:assigned_to])
-    end
-    
-    if params[:opened_after].present?
-      @issues = @issues.where("assigned_date >= :opened_after", :opened_after => DateTime.parse(params[:opened_after]))
-    end
-    
-    if params[:opened_before].present?
-      @issues = @issues.where("assigned_date <= :opened_before", :opened_before => DateTime.parse(params[:opened_before]))
-    end
-    
-    if params[:issue_title].present?
-      if params[:issue_title] != "other"
-        @issues = @issues.where(:issue_title => params[:issue_title])  
-      else
-        #find a way to sort out everything else
-      end
-    end
-     
-    @issues = @issues.all
+    @issues = IssueFilterer.new(params).filter
   end
   
   def new
     @issue = Issue.new
 #     raise @issue.inspect
-    @employees = ["Mona", "Edward", "Matthew", "Other"]
+    @received_by_employees = Employee.where(:customer_care => true).pluck(:name)
+    @assigned_to_employees = Employee.where(:software_technician => true).pluck(:name)
     @titles = ["defect/bug", "Missing functionality", "New change request", "other"]
   end
   
@@ -52,7 +26,8 @@ class IssuesController < ApplicationController
   def edit
     @issue=Issue.find(params["id"])
     @titles = ["defect/bug", "Missing functionality", "New change request", "other"]
-    @employees = ["Mona", "Edward", "Matthew", "Other"]
+    @received_by_employees = Employee.where(:customer_care => true).pluck(:name)
+    @assigned_to_employees = Employee.where(:software_technician => true).pluck(:name)
   end
   
   def update
@@ -62,10 +37,8 @@ class IssuesController < ApplicationController
   end
   def show
     @issue = Issue.find(params["id"])
-    @action = @issue.actions.build
+    @action = Action.new
     @actions = @issue.actions
-    @employees = ["Mona", "Edward", "Matthew", "Other"]
-    @action_titles = ["Investigate", "Created Bug",  "Fixed server", "Helped Customer", "Closed Issue", "Others" ]
   end
 
 end

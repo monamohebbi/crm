@@ -10,13 +10,13 @@
      <div class="form-group">    
        <label for="received_by" class="col-sm-2 control-label">Receiver</label>
        <div class="col-sm-5">
-          <%= select_tag(:received_by, options_for_select(@employees, params[:received_by]), {:include_blank => true, :class => 'form-control'}) %>
+         <%= select_tag(:received_by, options_for_select(@received_by_employees, params[:received_by]), {:include_blank => true, :class => 'form-control'}) %>
        </div> 
      </div>
      <div class="form-group">
        <label for="state" class="col-sm-2 control-label">Assigned To</label>
        <div class="col-sm-5">
-          <%= select_tag(:assigned_to, options_for_select(@employees, params[:assigned_to]), {:include_blank => true, :class => 'form-control'}) %>
+         <%= select_tag(:assigned_to, options_for_select(@assigned_to_employees, params[:assigned_to]), {:include_blank => true, :class => 'form-control'}) %>
        </div>
      </div>
     <div class="form-group">

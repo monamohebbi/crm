@@ -2,7 +2,7 @@ class ActionsController < ApplicationController
   before_action :authenticate_user!
   def create
     issue = Issue.find(params["issue_id"])
-    issue.actions.create(params["new_action"].permit(:action_title, :name, :date, :text))
+    new_action = issue.actions.create(params["new_action"].permit(:action_title, :name, :date, :text))
     redirect_to issue_path(issue.id)
   end
   def edit
@@ -10,7 +10,7 @@ class ActionsController < ApplicationController
     @actions = @issue.actions
     @action = @actions.find(params["id"])
     @action_titles = ["Investigate", "Created Bug",  "Fixed server", "Helped Customer", "Closed Issue", "Others" ]
-    @employees = ["Mona", "Edward", "Matthew", "Other"]
+    @employees = Employee.pluck(:name)
   end
   def update
     @actions=Issue.find(params["issue_id"]).actions

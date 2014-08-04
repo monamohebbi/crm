@@ -79,13 +79,13 @@
       <label for="new_action_action_title" class="col-sm-2 control-label">Action Title</label>
       <div class="col-sm-5">
         
-        <%= select_tag "new_action[action_title]", options_for_select(@action_titles), :class => "form-control" %>
+        <%= select_tag "new_action[action_title]", options_for_select(action_titles_for_select), :class => "form-control" %>
       </div>
     </div>
     <div class="form-group">
       <label for="new_action_name" class="col-sm-2 control-label">Completed By</label>
       <div class="col-sm-5">
-        <%= select_tag "new_action[name]", options_for_select(@employees, "employee_name"),  :class => "form-control" %>
+        <%= select_tag "new_action[name]", options_for_select(employees_for_select, "employee_name"),  :class => "form-control" %>
       </div>
     </div>
     <div class="form-group">
