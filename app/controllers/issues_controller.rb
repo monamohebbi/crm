@@ -8,7 +8,6 @@ class IssuesController < ApplicationController
   
   def new
     @issue = Issue.new
-#     raise @issue.inspect
   end
   
   def create

@@ -7,11 +7,13 @@ class ApplicationController < ActionController::Base
   def index
     # render :template => 'application/index', :layout => 'application'
   end
+
   def authorize_user!
     if !current_user.employee.management?
       redirect_to issues_path, :alert => "Sorry, you are not authorized to view that page."
     end
   end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u|
       

@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20140803213757) do
     t.string   "issue_title"
     t.string   "received_by"
     t.string   "assigned_to"
-    t.datetime "assigned_date", default: '2014-08-03 21:45:40'
+    t.datetime "assigned_date", default: '2014-08-04 23:52:38'
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "aasm_state",    default: "open"

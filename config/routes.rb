@@ -5,5 +5,4 @@ Crm::Application.routes.draw do
     resources :actions
   end
   resources :employees
-  
 end

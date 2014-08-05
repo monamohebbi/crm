@@ -52,3 +52,7 @@
 .clickable-row:hover {
   cursor: pointer;
 }
+
+.clickable-row.open {
+  background-color: green;
+}
