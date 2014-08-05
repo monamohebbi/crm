@@ -1,7 +1,77 @@
-<table>
-  <% @employees.each do |employee| %>
+<div class="container">
+  
+  <table>
     <tr>
-      <td><%= employee.name %></td>
-    </tr>
-  <% end %>
-</table>
+      <td style="width:100%"><h1>Employees</h1></td>
+      <td>
+        <%= link_to "New Employee", new_employee_path, {:class => "btn btn-success pull-right"} %>
+      </td>
+    <tr>
+  </table>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Employee id </th>
+        <th>Employee Name</th>
+<!--         <th>Email</th> -->
+        <th>Customer Care?</th>
+        <th>Software Technican?</th>
+        <th>Management?</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @employees.each do |employee| %>  
+        <tr>
+          <td><%=employee.id%></td>
+          <td><%=employee.name%></td>
+          <td>
+            <div class="btn-group">
+              <%= form_for employee do |f| %>
+                <% if employee.customer_care? %>
+                  <%= f.hidden_field :customer_care, :value => "false"  %>
+                  <%= f.submit "Yes", :class => "btn btn-success" %>
+                <% else %>
+                  <%= f.hidden_field :customer_care, :value => "true"  %>
+                  <%= f.submit "No", :class => "btn btn-danger" %>
+                <% end %> 
+              <% end %>
+            </div>
+          </td>
+          <td>
+            <div class="btn-group">
+              <%= form_for employee do |f| %>
+                <% if employee.software_technician? %>
+                  <%= f.hidden_field :software_technician, :value => "false"  %>
+                  <%= f.submit "Yes", :class => "btn btn-success" %>
+                <% else %>
+                  <%= f.hidden_field :software_technician, :value => "true"  %>
+                  <%= f.submit "No", :class => "btn btn-danger" %>
+                <% end %> 
+              <% end %>
+            </div>
+          </td>
+          <td>
+            <div class="btn-group">
+              <%= form_for employee do |f| %>
+                  <% if employee.management? %>
+                  <%= f.hidden_field :management, :value => "false"  %>
+                  <%= f.submit "Yes", :class => "btn btn-success" %>
+                <% else %>
+                  <%= f.hidden_field :management, :value => "true"  %>
+                  <%= f.submit "No", :class => "btn btn-danger" %>
+                <% end %> 
+              <% end %>
+            </div>
+          </td>
+          <td>
+            <div class="btn-group">
+              <%= link_to "Delete", employee_path(employee.id), :method => :delete, :confirm => "are you sure?", :class => "btn btn-primary" %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

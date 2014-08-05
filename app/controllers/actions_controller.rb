@@ -8,9 +8,7 @@ class ActionsController < ApplicationController
   def edit
     @issue = Issue.find(params["issue_id"])
     @actions = @issue.actions
-    @action = @actions.find(params["id"])
-    @action_titles = ["Investigate", "Created Bug",  "Fixed server", "Helped Customer", "Closed Issue", "Others" ]
-    @employees = Employee.pluck(:name)
+    @action = @actions.find(params["id"]
   end
   def update
     @actions=Issue.find(params["issue_id"]).actions

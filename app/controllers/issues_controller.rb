@@ -3,19 +3,12 @@ class IssuesController < ApplicationController
  
   def index
     @issues = Issue
-    @received_by_employees = Employee.where(:customer_care => true).pluck(:name)
-    @assigned_to_employees = Employee.where(:software_technician => true).pluck(:name)
-    @titles = ["defect/bug", "Missing functionality", "New change request", "other"]
-    
     @issues = IssueFilterer.new(params).filter
   end
   
   def new
     @issue = Issue.new
 #     raise @issue.inspect
-    @received_by_employees = Employee.where(:customer_care => true).pluck(:name)
-    @assigned_to_employees = Employee.where(:software_technician => true).pluck(:name)
-    @titles = ["defect/bug", "Missing functionality", "New change request", "other"]
   end
   
   def create
@@ -25,9 +18,6 @@ class IssuesController < ApplicationController
   
   def edit
     @issue=Issue.find(params["id"])
-    @titles = ["defect/bug", "Missing functionality", "New change request", "other"]
-    @received_by_employees = Employee.where(:customer_care => true).pluck(:name)
-    @assigned_to_employees = Employee.where(:software_technician => true).pluck(:name)
   end
   
   def update

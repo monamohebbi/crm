@@ -15,8 +15,15 @@ class EmployeesController < ApplicationController
     @employees=Employee.all
   end
   
+  def update
+    @employee=Employee.find(params["id"])
+    @employee.update_attributes(params["employee"].permit(:customer_care, :software_technician, :management))
+      redirect_to employees_path
+  end
+  
   def destroy
     Employee.find(params["id"]).destroy
+    redirect_to employees_path
   end
   
 end
