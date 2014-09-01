@@ -10,7 +10,7 @@ class ActionsController < ApplicationController
   def edit
     @issue = Issue.find(params["issue_id"])
     @actions = @issue.actions
-    @action = @actions.find(params["id"]
+    @action = @actions.find(params["id"])
   end
 
   def update
